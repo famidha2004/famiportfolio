@@ -20,7 +20,7 @@ body {
     background: var(--bg-light);
     color: var(--text-light);
     margin: 0;
-    transition: background 0.4s, color 0.4s;
+    transition: background 0.6s cubic-bezier(.4,0,.2,1), color 0.4s;
 }
 header {
     background: var(--primary);
@@ -29,6 +29,11 @@ header {
     text-align: center;
     border-radius: 0 0 30px 30px;
     box-shadow: 0 4px 24px rgba(108,99,255,0.10);
+    animation: fadeInDown 1s;
+}
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-40px);}
+    to { opacity: 1; transform: translateY(0);}
 }
 .toggle-switch {
     position: fixed;
@@ -76,9 +81,14 @@ header {
     box-shadow: 0 2px 16px rgba(108,99,255,0.08);
     margin-bottom: 1.5rem;
     padding: 1.5rem;
-    transition: background 0.4s, color 0.4s;
+    transition: background 0.6s cubic-bezier(.4,0,.2,1), color 0.4s, box-shadow 0.3s;
     position: relative;
     overflow: hidden;
+    animation: fadeInUp 1s;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
 }
 h2 { color: var(--primary); margin-top: 0; }
 a { color: var(--secondary); text-decoration: none; }
@@ -105,6 +115,7 @@ footer {
     background: var(--accent);
     border-radius: 0 0 18px 18px;
     margin-top: 2rem;
+    animation: fadeInUp 1.2s;
 }
 body.dark {
     background: var(--bg-dark);
@@ -113,6 +124,7 @@ body.dark {
 body.dark .card {
     background: var(--card-dark);
     color: var(--text-dark);
+    box-shadow: 0 4px 24px rgba(255,101,132,0.10);
 }
 body.dark header {
     background: var(--secondary);
@@ -137,6 +149,7 @@ body.dark a { color: var(--primary); }
     box-shadow: 0 2px 8px rgba(108,99,255,0.10);
     transition: box-shadow 0.2s, transform 0.2s;
     min-width: 90px;
+    animation: fadeInUp 1.2s;
 }
 .skill-item img {
     width: 48px;
@@ -155,7 +168,7 @@ body.dark a { color: var(--primary); }
 }
 .skill-item:hover {
     box-shadow: 0 4px 16px rgba(108,99,255,0.18);
-    transform: translateY(-4px) scale(1.05);
+    transform: translateY(-4px) scale(1.05) rotate(-2deg);
 }
 .skills-list {
     font-size: 1rem;
@@ -174,11 +187,13 @@ body.dark a { color: var(--primary); }
     box-shadow: 0 2px 8px rgba(108,99,255,0.10);
     padding: 1rem;
     cursor: pointer;
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
+    animation: fadeInUp 1.3s;
+    position: relative;
 }
 .project-card:hover {
-    box-shadow: 0 4px 16px rgba(108,99,255,0.18);
-    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(108,99,255,0.18);
+    transform: scale(1.05) rotate(1deg);
     background: #fff;
 }
 .modal {
@@ -188,6 +203,11 @@ body.dark a { color: var(--primary); }
     left: 0; top: 0;
     width: 100%; height: 100%;
     background: rgba(35,41,70,0.65);
+    animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+    from { opacity: 0;}
+    to { opacity: 1;}
 }
 .modal-content {
     background: var(--card-light);
@@ -198,6 +218,7 @@ body.dark a { color: var(--primary); }
     box-shadow: 0 8px 32px rgba(108,99,255,0.18);
     position: relative;
     color: var(--text-light);
+    animation: fadeInUp 0.7s;
 }
 .close {
     position: absolute;
@@ -205,6 +226,10 @@ body.dark a { color: var(--primary); }
     font-size: 2rem;
     color: var(--primary);
     cursor: pointer;
+    transition: color 0.2s;
+}
+.close:hover {
+    color: var(--secondary);
 }
 body.dark .modal-content {
     background: var(--card-dark);

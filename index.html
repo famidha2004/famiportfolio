@@ -165,36 +165,20 @@ body.dark a { color: var(--primary); }
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 28px;
+    gap: 24px;
     margin-top: 1rem;
 }
 .project-card {
     background: var(--accent);
-    border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(108,99,255,0.10);
-    padding: 1.2rem 1rem;
-    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(108,99,255,0.10);
+    padding: 1rem;
     cursor: pointer;
     transition: box-shadow 0.2s, transform 0.2s;
-    position: relative;
-}
-.project-card img {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 10px;
-}
-.project-card h3 {
-    margin: 0.5rem 0 0.2rem 0;
-    color: var(--primary);
-    font-size: 1.15rem;
-}
-.project-card span {
-    color: #444;
-    font-size: 0.98rem;
 }
 .project-card:hover {
-    box-shadow: 0 6px 24px rgba(108,99,255,0.18);
-    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 4px 16px rgba(108,99,255,0.18);
+    transform: translateY(-4px) scale(1.03);
     background: #fff;
 }
 .modal {
@@ -203,15 +187,14 @@ body.dark a { color: var(--primary); }
     z-index: 999;
     left: 0; top: 0;
     width: 100%; height: 100%;
-    overflow: auto;
     background: rgba(35,41,70,0.65);
 }
 .modal-content {
     background: var(--card-light);
-    margin: 5% auto;
+    margin: 8% auto;
     padding: 2rem 1.5rem;
     border-radius: 18px;
-    max-width: 540px;
+    max-width: 400px;
     box-shadow: 0 8px 32px rgba(108,99,255,0.18);
     position: relative;
     color: var(--text-light);
@@ -222,6 +205,10 @@ body.dark a { color: var(--primary); }
     font-size: 2rem;
     color: var(--primary);
     cursor: pointer;
+}
+body.dark .modal-content {
+    background: var(--card-dark);
+    color: var(--text-dark);
 }
 @media (max-width: 600px) {
     .skills-grid {
@@ -306,19 +293,16 @@ body.dark a { color: var(--primary); }
         <h2>Projects</h2>
         <div class="projects-grid">
             <div class="project-card" onclick="showProject('atm')">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="ATM Python" />
-                <h3>ATM Machine Simulation</h3>
-                <span>Python CLI Banking App</span>
+                <b>ATM Machine Simulation using Python</b>
+                <p>Python CLI Banking App</p>
             </div>
             <div class="project-card" onclick="showProject('mcq')">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="MCQ Generator" />
-                <h3>Automated MCQ Generator</h3>
-                <span>AI-powered Question Creation</span>
+                <b>Automated MCQ Generator using cGAN and LIAMA</b>
+                <p>AI-powered Question Creation</p>
             </div>
             <div class="project-card" onclick="showProject('chatgpt')">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Mini ChatGPT" />
-                <h3>Mini ChatGPT with GUVI</h3>
-                <span>Conversational AI Web App</span>
+                <b>Mini ChatGPT with GUVI</b>
+                <p>Conversational AI Web App</p>
             </div>
         </div>
     </div>
@@ -352,7 +336,11 @@ body.dark a { color: var(--primary); }
 </footer>
 <script>
 document.getElementById('theme-toggle').addEventListener('change', function() {
-    document.body.classList.toggle('dark', this.checked);
+    if (this.checked) {
+        document.body.classList.add('dark');
+    } else {
+        document.body.classList.remove('dark');
+    }
 });
 function toggleExpansion(id) {
     const el = document.getElementById(id);
@@ -360,63 +348,37 @@ function toggleExpansion(id) {
 }
 
 // Project modal logic
-const modal = document.getElementById('project-modal');
-const modalBody = document.getElementById('modal-body');
 function showProject(key) {
+    const modal = document.getElementById('project-modal');
+    const modalBody = document.getElementById('modal-body');
     let html = '';
     if (key === 'atm') {
         html = `
-        <h2>ATM Machine Simulation using Python</h2>
+        <h3>ATM Machine Simulation using Python</h3>
         <p><b>Duration:</b> August 2024 – September 2024</p>
-        <p><b>Tools & Technologies:</b> Python 3.x, CLI</p>
-        <p>This project simulates an Automated Teller Machine (ATM) system to provide basic banking functionalities. Users can log in securely using an account number and PIN, and perform core operations such as balance inquiry, cash deposit, withdrawal, and PIN change. The application emphasizes backend logic implementation, modular programming, and user input validation.</p>
-        <ul>
-            <li>Secure login with account number and PIN</li>
-            <li>Balance inquiry and real-time balance updates</li>
-            <li>Deposit and withdrawal operations with validation</li>
-            <li>PIN change facility</li>
-            <li>Error handling for invalid inputs and insufficient funds</li>
-        </ul>
-        <p><b>Skills Gained:</b> Python programming, data structures, CLI UI, banking logic</p>
+        <p><b>Description:</b> Simulates an ATM system with secure login, balance inquiry, deposit, withdrawal, and PIN change. Focuses on backend logic, modular programming, and input validation.</p>
         `;
     } else if (key === 'mcq') {
         html = `
-        <h2>Automated MCQ Generator using cGAN and LIAMA</h2>
+        <h3>Automated MCQ Generator using cGAN and LIAMA</h3>
         <p><b>Duration:</b> February 2025 – May 2025</p>
-        <p><b>Tools & Technologies:</b> Python, TensorFlow/PyTorch, NLP, LIAMA, Streamlit</p>
-        <p>This project automates the creation of multiple-choice questions (MCQs) from PDFs, hyperlinks, images, and text files. Using LIAMA for multimodal input and cGANs for question generation, the system produces relevant MCQs with plausible distractors. Educators can upload content and adjust complexity levels for tailored assessments.</p>
-        <ul>
-            <li>Accepts PDF, hyperlink, image, and text inputs</li>
-            <li>Generates MCQs with contextually appropriate distractors</li>
-            <li>Adjustable difficulty levels</li>
-            <li>User-friendly interface for educators</li>
-            <li>Utilizes LIAMA for multimodal content analysis</li>
-        </ul>
-        <p><b>Skills Gained:</b> Deep learning, GANs, NLP, UI design, educational tech</p>
+        <p><b>Description:</b> Automates MCQ creation from PDFs, links, images, and text using AI. Features adjustable difficulty and multimodal input processing for educators.</p>
         `;
     } else if (key === 'chatgpt') {
         html = `
-        <h2>Mini ChatGPT with GUVI</h2>
+        <h3>Mini ChatGPT with GUVI</h3>
         <p><b>Duration:</b> March 2025 – April 2025</p>
-        <p><b>Tools & Technologies:</b> Python, Flask, OpenAI API, HTML, CSS, JS</p>
-        <p>Built a simplified version of ChatGPT using the OpenAI API, Flask backend, and a user-friendly front-end. Supports user queries and returns AI-generated responses, demonstrating natural language processing capabilities.</p>
-        <ul>
-            <li>Interactive chat interface</li>
-            <li>Integration with OpenAI’s GPT models</li>
-            <li>Flask backend for secure API requests</li>
-            <li>Responsive UI</li>
-            <li>Session management for chat context</li>
-        </ul>
-        <p><b>Skills Gained:</b> API integration, backend development, frontend design, conversational AI</p>
+        <p><b>Description:</b> A simplified ChatGPT using OpenAI API and Flask, with a responsive web UI for interactive AI conversations.</p>
         `;
     }
     modalBody.innerHTML = html;
     modal.style.display = 'block';
 }
 function closeModal() {
-    modal.style.display = 'none';
+    document.getElementById('project-modal').style.display = 'none';
 }
 window.onclick = function(event) {
+    const modal = document.getElementById('project-modal');
     if (event.target == modal) {
         closeModal();
     }

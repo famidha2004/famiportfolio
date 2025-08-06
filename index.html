@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Famidha A Portfolio</title>
+<style>
+:root {
+    --primary: #6C63FF;
+    --secondary: #FF6584;
+    --bg-light: #f7f7fa;
+    --bg-dark: #232946;
+    --text-light: #232946;
+    --text-dark: #f7f7fa;
+    --card-light: #fff;
+    --card-dark: #393e6a;
+}
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg-light);
+    color: var(--text-light);
+    margin: 0;
+    transition: background 0.4s, color 0.4s;
+}
+header {
+    background: var(--primary);
+    color: #fff;
+    padding: 2rem 1rem 1rem 1rem;
+    text-align: center;
+    border-radius: 0 0 30px 30px;
+}
+.toggle-switch {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+.toggle-switch input { display: none; }
+.toggle-switch label {
+    background: var(--card-light);
+    border-radius: 20px;
+    padding: 5px 30px 5px 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    position: relative;
+    transition: background 0.3s;
+}
+.toggle-switch label:before {
+    content: '';
+    position: absolute;
+    left: 5px; top: 5px;
+    width: 20px; height: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    transition: left 0.3s;
+}
+.toggle-switch input:checked + label {
+    background: var(--card-dark);
+}
+.toggle-switch input:checked + label:before {
+    left: 35px;
+    background: var(--secondary);
+}
+.container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+.card {
+    background: var(--card-light);
+    border-radius: 18px;
+    box-shadow: 0 2px 16px rgba(108,99,255,0.08);
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    transition: background 0.4s, color 0.4s;
+}
+h2 { color: var(--primary); }
+a { color: var(--secondary); text-decoration: none; }
+.expansion {
+    cursor: pointer;
+    color: var(--primary);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.expansion-content {
+    display: none;
+    margin-top: 0.5rem;
+}
+footer {
+    text-align: center;
+    padding: 1rem;
+    color: #888;
+}
+body.dark {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+}
+body.dark .card {
+    background: var(--card-dark);
+    color: var(--text-dark);
+}
+body.dark header {
+    background: var(--secondary);
+}
+body.dark h2 { color: var(--secondary); }
+body.dark a { color: var(--primary); }
+</style>
+</head>
+<body>
+<div class="toggle-switch">
+    <input type="checkbox" id="theme-toggle">
+    <label for="theme-toggle"></label>
+</div>
+<header>
+    <h1>Famidha A</h1>
+    <p>Python Developer | AI Enthusiast</p>
+    <p>
+        <a href="mailto:famidhashamshath@gmail.com">famidhashamshath@gmail.com</a> |
+        Tirupattur | <a href="tel:+916383455811">+91-63834-55811</a>
+    </p>
+    <p>
+        <a href="https://linkedin.com/in/famidha" target="_blank">LinkedIn</a> |
+        <a href="https://github.com/famidha2004" target="_blank">GitHub</a>
+    </p>
+</header>
+<div class="container">
+    <div class="card">
+        <h2>Career Objective</h2>
+        <p>
+            Built and fine-tuned Python applications, including an AI-driven MCQ generator and an ATM simulation handling.
+            Collaborated with cross-functional teams to debug and optimize codebases, reducing runtime errors.
+            Ready to apply analytical problem-solving and hands-on software development expertise as a Junior Python Developer.
+        </p>
+    </div>
+    <div class="card">
+        <h2>Skills</h2>
+        <ul>
+            <li><b>Technical/Analytical:</b> HTML · CSS · Python · MS Office · Anti Money Laundering · KYC · CDD · EDD</li>
+            <li><b>Interpersonal:</b> Adaptability · Communication · Leadership · Problem-solving · Teamwork</li>
+            <li><b>Languages:</b> English · Hindi · Tamil · Urdu</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>Experience</h2>
+        <div class="expansion" onclick="toggleExpansion('exp1')">Python Development Intern · Octanet Services Pvt Ltd <span>&#9654;</span></div>
+        <div id="exp1" class="expansion-content">
+            Aug 2024 - Oct 2024
+        </div>
+        <div class="expansion" onclick="toggleExpansion('exp2')">Python Full Stack Intern · Besant Technologies Pvt Ltd <span>&#9654;</span></div>
+        <div id="exp2" class="expansion-content">
+            Feb 2025 - May 2025
+        </div>
+    </div>
+    <div class="card">
+        <h2>Projects</h2>
+        <ul>
+            <li><b>Python ATM Machine Simulator:</b> Simulates secure ATM operations—authentication, transactions, and balance management.</li>
+            <li><b>Automated MCQ Generation with cGANs:</b> Built an AI tool that generates MCQs from PDFs, images, and links.</li>
+            <li><b>Mini ChatGPT with GUVI:</b> Created a lightweight ChatGPT prototype during GenAI workshop.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>Education</h2>
+        <ul>
+            <li>P.S.V. College of Engineering | B.E. Computer Science · Grade: 8.07 <span style="float:right;">Grad May 2025</span></li>
+            <li>CSI Girls Matric H.S School | Higher Secondary · Grade: 89 <span style="float:right;">Grad Jun 2021</span></li>
+            <li>CSI Girls Matric H.S School | Secondary Education · Grade: 85 <span style="float:right;">Grad Jun 2019</span></li>
+        </ul>
+    </div>
+    <div class="card">
+        <h2>Achievements</h2>
+        <ul>
+            <li>Guinness World Record - GUVI SAWit Womens AI Event</li>
+            <li>Research Publication - IJIRCCE</li>
+            <li>Technical Workshop - Flask Development - Sacred Heart College</li>
+            <li>Internet 3.0 Symposium - Adiyaman College</li>
+        </ul>
+    </div>
+</div>
+<footer>
+    &copy; 2024 Famidha A. All rights reserved.
+</footer>
+<script>
+const toggle = document.getElementById('theme-toggle');
+toggle.addEventListener('change', function() {
+    document.body.classList.toggle('dark', this.checked);
+});
+function toggleExpansion(id) {
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+</body>
+</html>

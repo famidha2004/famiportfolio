@@ -316,6 +316,24 @@ body.dark .modal-content {
 }
 
 /* Scroll reveal animation for cards and project cards */
+.read-loud-btn {
+    display: block;
+    margin: 30px auto 0 auto;
+    padding: 0.7rem 2rem;
+    font-size: 1.08rem;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(108,99,255,0.10);
+    transition: background 0.2s, transform 0.2s;
+}
+.read-loud-btn:hover {
+    background: var(--secondary);
+    transform: scale(1.05);
+}
 </style>
 </head>
 <body>
@@ -323,6 +341,7 @@ body.dark .modal-content {
     <input type="checkbox" id="theme-toggle">
     <label for="theme-toggle"></label>
 </div>
+<button class="read-loud-btn" onclick="readPortfolio()">🔊 Read Portfolio Aloud</button>
 <div class="hero">
     <h1>Famidha A</h1>
     <p>Python Developer &amp; AI Enthusiast</p>
@@ -332,7 +351,7 @@ body.dark .modal-content {
         <a href="https://github.com/famidha2004" target="_blank">GitHub</a>
     </div>
 </div>
-<div class="container">
+<div class="container" id="portfolio-content">
     <div class="section-title">Career Objective</div>
     <div class="card">
         <p>
@@ -435,7 +454,7 @@ function showProject(key) {
         html = `
         <h3>ATM Machine Simulation using Python</h3>
         <p><b>Duration:</b> August 2024 – September 2024</p>
-        <p><b>Description:</b> Simulates an ATM system with secure login, balance inquiry, deposit, withdrawal, and PIN change. Focuses on backend logic, modular programming, and input validation.</p>
+        <p><b>Description:</b> Simulates an ATM system with secure login, balance inquiry, deposit, withdrawal, and PIN change. Focuses on backend logic, modular programming, and input validation.</p>[...]
         `;
     } else if (key === 'mcq') {
         html = `
@@ -474,6 +493,74 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.card').forEach(card => observer.observe(card));
 document.querySelectorAll('.project-card').forEach(card => observer.observe(card));
+
+// Read Portfolio Aloud Feature
+function readPortfolio() {
+    // Collect text content from the portfolio
+    let text = "";
+    // Hero section
+    text += document.querySelector('.hero h1').textContent + ". ";
+    text += document.querySelector('.hero p').textContent + ". ";
+    text += "Contact links: ";
+    document.querySelectorAll('.hero-links a').forEach(a => {
+        text += a.textContent + ", ";
+    });
+    // Portfolio sections
+    document.querySelectorAll('.container .section-title').forEach((title, idx) => {
+        text += "\n" + title.textContent + ". ";
+        // Next card after section title
+        const card = title.nextElementSibling;
+        if (card && card.classList.contains('card')) {
+            // If card contains paragraphs
+            card.querySelectorAll('p').forEach(p => {
+                text += p.textContent + ". ";
+            });
+            // If card contains lists
+            card.querySelectorAll('ul li').forEach(li => {
+                text += li.textContent + ". ";
+            });
+            // Skills
+            if (card.querySelector('.skills-grid')) {
+                text += "Skills: ";
+                card.querySelectorAll('.skill-item span').forEach(span => {
+                    text += span.textContent + ", ";
+                });
+            }
+            // Languages
+            if (card.querySelector('.skills-list')) {
+                text += card.querySelector('.skills-list').textContent + ". ";
+            }
+            // Experience
+            card.querySelectorAll('.expansion').forEach(exp => {
+                text += exp.textContent + ". ";
+            });
+            card.querySelectorAll('.expansion-content').forEach(exp => {
+                text += exp.textContent + ". ";
+            });
+            // Projects
+            card.querySelectorAll('.project-card b').forEach(proj => {
+                text += proj.textContent + ". ";
+            });
+            card.querySelectorAll('.project-card p').forEach(projDesc => {
+                text += projDesc.textContent + ". ";
+            });
+        }
+    });
+    // Achievements
+    // Already included by list parsing above
+
+    // Speak
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = "en-US";
+        utter.rate = 1;
+        utter.pitch = 1;
+        window.speechSynthesis.speak(utter);
+    } else {
+        alert("Sorry, your browser does not support speech synthesis.");
+    }
+}
 </script>
 </body>
 </html>

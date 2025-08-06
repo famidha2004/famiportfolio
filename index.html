@@ -13,6 +13,7 @@
     --text-dark: #f7f7fa;
     --card-light: #fff;
     --card-dark: #393e6a;
+    --accent: #e0e7ff;
 }
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
@@ -27,6 +28,7 @@ header {
     padding: 2rem 1rem 1rem 1rem;
     text-align: center;
     border-radius: 0 0 30px 30px;
+    box-shadow: 0 4px 24px rgba(108,99,255,0.10);
 }
 .toggle-switch {
     position: absolute;
@@ -71,23 +73,34 @@ header {
     margin-bottom: 1.5rem;
     padding: 1.5rem;
     transition: background 0.4s, color 0.4s;
+    position: relative;
+    overflow: hidden;
 }
-h2 { color: var(--primary); }
+h2 { color: var(--primary); margin-top: 0; }
 a { color: var(--secondary); text-decoration: none; }
 .expansion {
     cursor: pointer;
     color: var(--primary);
     font-weight: bold;
     margin-bottom: 0.5rem;
+    transition: color 0.2s;
+}
+.expansion:hover {
+    color: var(--secondary);
 }
 .expansion-content {
     display: none;
     margin-top: 0.5rem;
+    padding-left: 1rem;
+    color: #444;
 }
 footer {
     text-align: center;
     padding: 1rem;
     color: #888;
+    background: var(--accent);
+    border-radius: 0 0 18px 18px;
+    margin-top: 2rem;
 }
 body.dark {
     background: var(--bg-dark);
@@ -102,6 +115,57 @@ body.dark header {
 }
 body.dark h2 { color: var(--secondary); }
 body.dark a { color: var(--primary); }
+.skills-grid {
+    display: flex;
+    gap: 32px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--accent);
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 8px rgba(108,99,255,0.10);
+    transition: box-shadow 0.2s, transform 0.2s;
+    min-width: 90px;
+}
+.skill-item img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 8px;
+    transition: transform 0.2s;
+    background: #fff;
+    border-radius: 8px;
+    padding: 4px;
+}
+.skill-item span {
+    font-size: 1rem;
+    color: var(--primary);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.skill-item:hover {
+    box-shadow: 0 4px 16px rgba(108,99,255,0.18);
+    transform: translateY(-4px) scale(1.05);
+}
+.skills-list {
+    font-size: 1rem;
+    color: #444;
+    margin-top: 0.5rem;
+}
+@media (max-width: 600px) {
+    .skills-grid {
+        gap: 16px;
+    }
+    .card {
+        padding: 1rem;
+    }
+}
 </style>
 </head>
 <body>
@@ -132,11 +196,28 @@ body.dark a { color: var(--primary); }
     </div>
     <div class="card">
         <h2>Skills</h2>
-        <ul>
-            <li><b>Technical/Analytical:</b> HTML · CSS · Python · MS Office · Anti Money Laundering · KYC · CDD · EDD</li>
-            <li><b>Interpersonal:</b> Adaptability · Communication · Leadership · Problem-solving · Teamwork</li>
-            <li><b>Languages:</b> English · Hindi · Tamil · Urdu</li>
-        </ul>
+        <div class="skills-grid">
+            <div class="skill-item" title="Python">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                <span>Python</span>
+            </div>
+            <div class="skill-item" title="HTML5">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                <span>HTML5</span>
+            </div>
+            <div class="skill-item" title="CSS3">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                <span>CSS3</span>
+            </div>
+            <div class="skill-item" title="MS Office">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="MS Office">
+                <span>MS Office</span>
+            </div>
+        </div>
+        <div class="skills-list">
+            <b>Interpersonal:</b> Adaptability · Communication · Leadership · Problem-solving · Teamwork<br>
+            <b>Languages:</b> English · Hindi · Tamil · Urdu
+        </div>
     </div>
     <div class="card">
         <h2>Experience</h2>
